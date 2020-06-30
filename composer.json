@@ -1,6 +1,8 @@
 {
     "name": "skvord89/php-gendiff",
-    "bin": ["bin/gendiff.php"],
+    "bin": [
+        "bin/gendiff"
+    ],
     "autoload": {
         "files": [
             "src/Cli.php"
