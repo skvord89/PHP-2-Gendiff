@@ -1,5 +1,11 @@
 {
     "name": "skvord89/php-gendiff",
+    "bin": ["bin/gendiff.php"],
+    "autoload": {
+        "files": [
+            "src/Cli.php"
+        ]
+    },
     "description": "CLI-utility to find difference between config files",
     "license": "MIT",
     "authors": [
