@@ -1,0 +1,14 @@
+{
+    "name": "skvord89/php-gendiff",
+    "description": "CLI-utility to find difference between config files",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Denis Skvortsov",
+            "email": "skvord89@gmail.com"
+        }
+    ],
+    "require": {
+        "docopt/docopt": "^1.0"
+    }
+}
