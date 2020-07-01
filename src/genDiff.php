@@ -1,5 +1,5 @@
 <?php
-namespace Gendiff\Cli;
+namespace Differ\genDiff;
 
 use Docopt;
 
@@ -19,11 +19,22 @@ Options:
   --format <fmt>                Report format [default: pretty]
 DOC;
     $args = Docopt::handle($doc);
-    $firstFile = $args['<firstFile>'];
-    $secondFile = $args['<secondFile>'];
+    return $args;
+}
 
-    $firstFileData = file_get_contents($firstFile);
-    $secondFileData = file_get_contents($secondFile);
+function saveBooleanString($item)
+{
+    if (is_bool($item)) {
+        return $item ? 'true' : 'false';
+    }
+    return $item;
+}
+
+function genDiff($filePath1, $filePath2)
+{
+
+    $firstFileData = file_get_contents($filePath1);
+    $secondFileData = file_get_contents($filePath2);
 
     $firstFileJSONData = json_decode($firstFileData, true);
     $secondFileJSONData = json_decode($secondFileData, true);
@@ -51,14 +62,6 @@ DOC;
             }
         }
     }
-    $stringResult = "{\n" . implode("\n", $result) . "\n}\n";
-    print_r($stringResult);
-}
 
-function saveBooleanString($item)
-{
-    if (is_bool($item)) {
-        return $item ? 'true' : 'false';
-    }
-    return $item;
+    return "{\n" . implode("\n", $result) . "\n}\n";
 }

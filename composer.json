@@ -5,7 +5,7 @@
     ],
     "autoload": {
         "files": [
-            "src/Cli.php"
+            "src/genDiff.php"
         ]
     },
     "description": "CLI-utility to find difference between config files",
