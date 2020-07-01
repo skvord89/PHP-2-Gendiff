@@ -34,20 +34,31 @@ DOC;
     $result = [];
 
     foreach ($unitedKeys as $key) {
+
+        $firstStringValue = saveBooleanString($firstFileJSONData[$key] ?? null);
+        $secondStringValue = saveBooleanString($secondFileJSONData[$key] ?? null);
+
         if (!in_array($key, $firstKeys) && in_array($key, $secondKeys)) {
-            $result[] = "  + {$key}: {$secondFileJSONData[$key]}";
+            $result[] = "  + {$key}: {$secondStringValue}";
         } elseif (in_array($key, $firstKeys) && !in_array($key, $secondKeys)) {
-            $result[] = "  - {$key}: {$firstFileJSONData[$key]}";
+            $result[] = "  - {$key}: {$firstStringValue}";
         } else {
-            if ($firstFileJSONData[$key] !== $secondFileJSONData[$key]) {
-                $result[] = "  + {$key}: {$secondFileJSONData[$key]}";
-                $result[] = "  - {$key}: {$firstFileJSONData[$key]}";
+            if ($firstStringValue !== $secondStringValue) {
+                $result[] = "  + {$key}: {$secondStringValue}";
+                $result[] = "  - {$key}: {$firstStringValue}";
             } else {
-                $result[] = "    {$key}: {$secondFileJSONData[$key]}";
+                $result[] = "    {$key}: {$secondStringValue}";
             }
         }
-
     }
     $stringResult = "{\n" . implode("\n", $result) . "\n}\n";
     print_r($stringResult);
+}
+
+function saveBooleanString($item)
+{
+    if (is_bool($item)) {
+        return $item ? 'true' : 'false';
+    }
+    return $item;
 }
